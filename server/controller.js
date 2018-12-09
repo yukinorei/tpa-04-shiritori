@@ -76,11 +76,19 @@ const playWord = function(req, res) {
     });
 };
 
-const resetGame = function(req, res) {
-  //
-  // TODO
-  //
-  console.log('TODO: Reset a game identified by playerName');
+const resetGame = (req, res) => {
+  const { playerName } = req.body;
+  if (!playerName) {
+    const reset = { success: false };
+    return res.json(reset);
+  }
+  if (typeof playerName !== 'string') {
+    const reset = { success: false };
+    return res.json(reset);
+  }
+  gameInstances.get(playerName, new Game());
+  const reset = { success: true };
+  return res.json(reset);
 };
 
 module.exports = {
