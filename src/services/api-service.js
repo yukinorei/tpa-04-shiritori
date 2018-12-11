@@ -16,7 +16,7 @@ const apiService = {
     })
       .then(resp => resp.json());
   },
-  resetGame: function({ playerName }) {
+  resetGame: function(playerName) {
     return fetch('/api/reset-game', {
       method: 'post',
       headers: {
@@ -26,11 +26,7 @@ const apiService = {
         playerName,
       }),
     })
-      .then(resp => resp.json())
-      .catch((error) => {
-        console.log('Error', error);
-        throw new Error('There has been a problem');
-      });
+      .then(resp => resp.json());
   },
 };
 
